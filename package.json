@@ -16,6 +16,7 @@
     "react-icons": "^2.2.3",
     "react-redux": "^5.0.3",
     "react-spinkit": "^3.0.0",
+    "react-tabs": "^1.1.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   },
