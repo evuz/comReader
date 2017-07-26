@@ -11,6 +11,8 @@ const {
   createTmpFolder,
   setCurrentDirectory,
   getCurrentDirectory,
+  areThereFolder,
+  copyUp,
  } = require('./directory');
 
 let currentFile;
@@ -42,7 +44,11 @@ function openFile(pathFile) {
       // eslint-disable-next-line no-shadow
       readDirectory(tmpFolder, (err, files) => {
         const ext = ['.jpg', '.png'];
-
+        const folders = areThereFolder(files, tmpFolder);
+        if (folders) {
+          // eslint-disable-next-line
+          files = copyUp(folders, tmpFolder);
+        }
         removeFilesByExtensions(files, tmpFolder, ext);
         // eslint-disable-next-line no-shadow
         readDirectory(tmpFolder, (err, files) => {
@@ -89,9 +95,10 @@ function removeFilesByExtensions(files, tmp, ext) {
 
   files.forEach((file) => {
     const fileExt = path.extname(file).toLowerCase();
+    const isFile = fs.lstatSync(path.join(tmp, file)).isFile();
     const checked = ext.find(e => e.toLowerCase() === fileExt);
 
-    if (!checked) {
+    if (!checked && isFile) {
       fs.unlinkSync(path.join(tmp, file));
     }
   });

@@ -58,12 +58,37 @@ function createTmpFolder(file) {
   return folder;
 }
 
+function areThereFolder(files, dir) {
+  const folders = files.filter(file => fs.lstatSync(path.join(dir, file)).isDirectory());
+  return folders.length ? folders : false;
+}
+
+function copyUp(folders, dir) {
+  // eslint-disable-next-line
+  if (typeof folders === 'string') folders = [folders];
+  folders.forEach((folder) => {
+    const files = fs.readdirSync(path.join(dir, folder));
+
+    files.forEach((file) => {
+      const dirFile = path.join(dir, folder, file);
+      if (fs.lstatSync(dirFile).isFile()) {
+        const readFile = fs.readFileSync(dirFile);
+        fs.writeFileSync(path.join(dir, `${folder}_${file}`), readFile);
+      }
+    });
+    deleteFolderRecursive(path.join(dir, folder));
+  });
+  return fs.readdirSync(dir);
+}
+
 const API = {
   readDirectory,
   removeTmpFolder,
   createTmpFolder,
   setCurrentDirectory,
   getCurrentDirectory,
+  areThereFolder,
+  copyUp,
 };
 
 module.exports = API;
