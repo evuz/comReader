@@ -5,10 +5,11 @@ import LayoutComponent from '../components/Layout';
 import ControlNavContainer from './ControlNav';
 import LateralPanelContainer from './LateralPanel';
 
-const LayoutContainer = ({ children }) => (
+const LayoutContainer = ({ children, fullScreen }) => (
   <LayoutComponent
     controlNav={<ControlNavContainer />}
     lateralPanel={<LateralPanelContainer />}
+    fullScreen={fullScreen}
   >
     {children}
   </LayoutComponent>

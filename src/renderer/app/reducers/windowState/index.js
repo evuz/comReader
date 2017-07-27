@@ -10,7 +10,7 @@ const initialState = {
 function options(state = initialState, action) {
   switch (action.type) {
     case SET_FULL_SCREEN:
-      return Object.assign({}, state, { fullScreen: state.fullScreen });
+      return Object.assign({}, state, { fullScreen: action.fullScreen });
     case SET_FETCHING:
       return Object.assign({}, state, { fetching: action.state });
     default:

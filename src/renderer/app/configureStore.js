@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 import reader from './reducers/reader';
 import options from './reducers/options';
 import windowState from './reducers/windowState';
+import tab from './reducers/tab';
 
 function configureStore() {
   const appReducers = combineReducers({
     reader,
     options,
+    tab,
     windowState,
   });
 

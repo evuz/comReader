@@ -22,18 +22,6 @@
         .header_nav {
             display: none;
         }
-        .lateral_nav {
-            z-index: 1;
-            top: 0;
-            left: -100px;
-            transition: 0.3s;
-            opacity: 0;
-            &:hover {
-                opacity: 1;
-                left: 0;
-                overflow-y: scroll;
-            }
-        }
     }
      ::-webkit-scrollbar-track {
         opacity: 0;
