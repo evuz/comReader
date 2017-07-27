@@ -4,25 +4,13 @@ import { FaClose } from 'react-icons/lib/fa';
 
 import './index.scss';
 
-// const TabOne = () => (
-//   <div>
-//     Primer tab
-//   </div>
-// );
-
-// const TabTwo = () => (
-//   <div>
-//     Segundo tab
-//   </div>
-// );
-
-// const tabs = [
-//   { title: 'tab1', component: <TabOne /> }, { title: 'tab2', component: <TabTwo /> }
-// ];
-
-const TaskPanelComponent = ({ onClose, tabs = [], onChangeTab }) => {
+const TaskPanelComponent = ({ onClose, tabs = [], onChangeTab, onDoubleClickTabList }) => {
   const tabsRenderer = tabs.map((tab, index) => (
-    <Tab className="tab" key={index}>
+    <Tab
+      className="tab"
+      key={index}
+      onDoubleClick={e => e.stopPropagation()}
+    >
       <span>{tab.title}</span>
       <FaClose className="close-icon" onClick={() => onClose(index)} />
     </Tab>
@@ -43,7 +31,10 @@ const TaskPanelComponent = ({ onClose, tabs = [], onChangeTab }) => {
       selectedTabClassName="tab_selected"
       onSelect={onChangeTab}
     >
-      <TabList className="tab_list">
+      <TabList
+        className="tab_list"
+        onDoubleClick={onDoubleClickTabList}
+      >
         {tabsRenderer}
       </TabList>
       {panelComponentsRenderer}
