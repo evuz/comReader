@@ -33,7 +33,7 @@ const TaskPanelComponent = ({ onClose, tabs = [], onChangeTab, onDoubleClickTabL
     >
       <TabList
         className="tab_list"
-        onDoubleClick={onDoubleClickTabList}
+        onDoubleClick={() => onDoubleClickTabList()}
       >
         {tabsRenderer}
       </TabList>
