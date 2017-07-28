@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import TabPanelComponent from '../components/TabPanel';
-import { setTabSelected, removeTab } from '../reducers/tab';
+import { setTabSelected, removeTab, newTab } from '../reducers/tab';
 
 const mapStateToProps = state => ({
   tabs: state.tab.tabs,
@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onClose: removeTab,
   onChangeTab: setTabSelected,
+  onDoubleClickTabList: newTab,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabPanelComponent);
