@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 
 import Layout from './containers/Layout';
 import Reader from './containers/Reader';
+import Welcome from './components/Welcome';
+import TabPanel from './containers/TabPanel';
 import LoadingContainer from './containers/Loading';
 import { setDirectory, setFiles } from './reducers/reader';
 import { setFullScreen, setFetching } from './reducers/windowState';
+import { newTab, changeTab } from './reducers/tab';
 
 import './app.scss';
 
@@ -15,6 +18,7 @@ class App extends Component {
     ipcRenderer.on('file-extracted', (event, data) => {
       this.props.setDirectory(`${data.tmpFolder}/`, data.filename);
       this.props.setFiles(data.files);
+      this.props.changeTab({ title: data.filename, component: <Reader /> }, 0);
     });
 
     ipcRenderer.on('enter-full-screen', () => {
@@ -34,6 +38,7 @@ class App extends Component {
         this.props.setFetching(state);
       }
     });
+    this.props.newTab({ title: 'Welcome', component: <Welcome /> });
   }
 
   render() {
@@ -41,18 +46,24 @@ class App extends Component {
       <div className="App">
         <LoadingContainer />
         <Layout>
-          <Reader />
+          <TabPanel />
         </Layout>
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  tabSelected: state.tab.tabSelected,
+});
+
 const mapDispatchToProps = {
   setDirectory,
   setFiles,
   setFullScreen,
   setFetching,
+  newTab,
+  changeTab,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
