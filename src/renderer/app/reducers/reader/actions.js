@@ -6,10 +6,11 @@ import {
   SET_PAGE,
 } from './actionTypes';
 
-export function setDirectory(directory) {
+export function setDirectory(directory, filename) {
   return {
     type: SET_DIRECTORY,
     directory,
+    filename,
   };
 }
 

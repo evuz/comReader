@@ -56,9 +56,10 @@ function openFile(pathFile) {
           if (process.env.NODE_ENV === 'development') {
             req.tmpFolder = path.relative(path.resolve(__dirname), tmpFolder);
           }
+          const filename = path.basename(tmpFolder).replace(/_/gi, ' ');
           mainWindow.webContents.send('fetching', false);
           mainWindow.webContents.send('file-extracted',
-            Object.assign({}, req, { files }));
+            Object.assign({}, req, { filename, files }));
         });
       });
     }).catch((err) => {

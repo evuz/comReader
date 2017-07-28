@@ -13,7 +13,7 @@ import './app.scss';
 class App extends Component {
   componentDidMount() {
     ipcRenderer.on('file-extracted', (event, data) => {
-      this.props.setDirectory(`${data.tmpFolder}/`);
+      this.props.setDirectory(`${data.tmpFolder}/`, data.filename);
       this.props.setFiles(data.files);
     });
 

@@ -10,13 +10,14 @@ const initialState = {
   files: [],
   directory: '',
   page: 0,
+  filename: '',
 };
 
 function reader(state = initialState, action) {
   switch (action.type) {
     case SET_DIRECTORY: {
-      const { directory } = action;
-      return Object.assign({}, state, { directory });
+      const { directory, filename } = action;
+      return Object.assign({}, state, { directory, filename });
     }
     case SET_FILES: {
       const { files } = action;
