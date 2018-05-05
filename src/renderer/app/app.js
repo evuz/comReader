@@ -2,8 +2,8 @@ import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Layout from './containers/Layout';
-import TabPanel from './containers/TabPanel';
+import LayoutContainer from './containers/Layout';
+import TabPanelContainer from './containers/TabPanel';
 import LoadingContainer from './containers/Loading';
 import { setDirectory, setFiles } from './reducers/reader';
 import { setFullScreen, setFetching } from './reducers/windowState';
@@ -40,9 +40,9 @@ class App extends Component {
     return (
       <div className="App">
         <LoadingContainer />
-        <Layout>
-          <TabPanel />
-        </Layout>
+        <LayoutContainer>
+          <TabPanelContainer />
+        </LayoutContainer>
       </div>
     );
   }
