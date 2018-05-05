@@ -6,7 +6,7 @@ export const Root = styled.div`
   bottom: 0;
   left: 0;
   height: 25px;
-  background: #dd403a;
+  background: ${props => props.theme.controlNavColor};
 `;
 
 export const IconsWrapper = styled.div`

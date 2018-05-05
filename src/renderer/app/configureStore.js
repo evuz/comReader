@@ -5,6 +5,7 @@ import reader from './reducers/reader';
 import options from './reducers/options';
 import windowState from './reducers/windowState';
 import tab from './reducers/tab';
+import theme from './reducers/theme';
 
 function configureStore() {
   const appReducers = combineReducers({
@@ -12,6 +13,7 @@ function configureStore() {
     options,
     tab,
     windowState,
+    theme,
   });
 
   let enhacer;

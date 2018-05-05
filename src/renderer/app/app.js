@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
 import LayoutContainer from './containers/Layout';
 import TabPanelContainer from './containers/TabPanel';
@@ -38,18 +39,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <LoadingContainer />
-        <LayoutContainer>
-          <TabPanelContainer />
-        </LayoutContainer>
-      </div>
+      <ThemeProvider theme={this.props.theme}>
+        <div className="App">
+          <LoadingContainer />
+          <LayoutContainer>
+            <TabPanelContainer />
+          </LayoutContainer>
+        </div>
+      </ThemeProvider>
     );
   }
 }
 
 const mapStateToProps = state => ({
   tabSelected: state.tab.tabSelected,
+  theme: state.theme,
 });
 
 const mapDispatchToProps = {
