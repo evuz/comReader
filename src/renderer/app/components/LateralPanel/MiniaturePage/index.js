@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './index.scss';
+import { Root, HoverPage, NumberPage, Image } from './components';
 
 class MiniaturePage extends Component {
   constructor() {
@@ -17,16 +17,16 @@ class MiniaturePage extends Component {
   render() {
     const { page, src, active } = this.props;
     return (
-      <div
+      <Root
         onClick={this.handleClick}
         role="presentation"
-        className={active ? 'active miniature-page' : 'miniature-page'}
+        className={active ? 'active' : ''}
       >
-        <div className="hover-page">
-          <div className="number-page">{page + 1}</div>
-        </div>
-        <img src={src} alt="" />
-      </div>
+        <HoverPage active={active}>
+          <NumberPage>{page + 1}</NumberPage>
+        </HoverPage>
+        <Image src={src} alt="" />
+      </Root>
     );
   }
 }
