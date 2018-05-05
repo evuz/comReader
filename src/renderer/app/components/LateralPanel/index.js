@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import MiniaturePage from './MiniaturePage';
+import { Root } from './components';
 
 import './index.scss';
 
@@ -30,9 +31,9 @@ class LateralNav extends Component {
       active={page === index}
     />));
     return (
-      <div className="lateral_nav" ref={c => (this.lateralNav = c)}>
+      <Root ref={c => (this.lateralNav = c)}>
         {imgShow}
-      </div>
+      </Root>
     );
   }
 }
