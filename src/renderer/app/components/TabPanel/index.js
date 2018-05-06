@@ -1,45 +1,47 @@
 import React from 'react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { FaClose } from 'react-icons/lib/fa';
 
-import './index.scss';
+import {
+  Root,
+  TabListWrapper,
+  TabWrapper,
+  TabPanelWrapper,
+  TabText,
+} from './components';
 
-const TaskPanelComponent = ({ onClose, tabs = [], onChangeTab, onDoubleClickTabList }) => {
+const TabPanelComponent = ({
+  onClose,
+  tabs = [],
+  onChangeTab,
+  onDoubleClickTabList,
+}) => {
   const tabsRenderer = tabs.map((tab, index) => (
-    <Tab
-      className="tab"
-      key={index}
-      onDoubleClick={e => e.stopPropagation()}
-    >
-      <span>{tab.title}</span>
+    <TabWrapper key={index} onDoubleClick={e => e.stopPropagation()}>
+      <TabText>{tab.title}</TabText>
       <FaClose className="close-icon" onClick={() => onClose(index)} />
-    </Tab>
+    </TabWrapper>
   ));
   const panelComponentsRenderer = tabs.map((tab, index) => (
-    <TabPanel
+    <TabPanelWrapper
       key={index}
       className="tab_panel"
       selectedClassName="tab_panel_selected"
     >
       {tab.component}
-    </TabPanel>
+    </TabPanelWrapper>
   ));
   return (
-    <Tabs
-      className="tab_panel_component"
+    <Root
       disabledTabClassName="tab_disable"
       selectedTabClassName="tab_selected"
       onSelect={onChangeTab}
     >
-      <TabList
-        className="tab_list"
-        onDoubleClick={() => onDoubleClickTabList()}
-      >
+      <TabListWrapper onDoubleClick={() => onDoubleClickTabList()}>
         {tabsRenderer}
-      </TabList>
+      </TabListWrapper>
       {panelComponentsRenderer}
-    </Tabs>
+    </Root>
   );
 };
 
-export default TaskPanelComponent;
+export default TabPanelComponent;
