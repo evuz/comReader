@@ -31,7 +31,7 @@ class LateralNav extends Component {
       />
     ));
     return (
-      <Root fullScreen={this.props.fullScreen} ref={c => (this.lateralNav = c)}>
+      <Root fullScreen={this.props.fullScreen} innerRef={c => (this.lateralNav = c)}>
         {imgShow}
       </Root>
     );
