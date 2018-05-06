@@ -12,6 +12,7 @@ export const Root = styled.div`
     theme.fullScreen && `
     z-index: 2;
     top: 0;
+    bottom: 0;
     left: -100px;
     transition: 0.3s;
     opacity: 0;
