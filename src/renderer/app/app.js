@@ -9,7 +9,7 @@ import LoadingContainer from './containers/Loading';
 import { setDirectory, setFiles } from './reducers/reader';
 import { setFullScreen, setFetching } from './reducers/windowState';
 
-import './app.scss';
+import { Root } from './components';
 
 class App extends Component {
   componentDidMount() {
@@ -43,12 +43,12 @@ class App extends Component {
     });
     return (
       <ThemeProvider theme={theme}>
-        <div className="App">
+        <Root>
           <LoadingContainer />
           <LayoutContainer>
             <TabPanelContainer />
           </LayoutContainer>
-        </div>
+        </Root>
       </ThemeProvider>
     );
   }
