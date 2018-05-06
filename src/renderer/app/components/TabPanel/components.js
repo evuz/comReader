@@ -35,6 +35,7 @@ const TabListWrapper = styled(TabList)`
   margin: 0;
   padding: 0;
   background-color: #262626;
+  display: none;
 `;
 
 const TabPanelWrapper = styled(TabPanel)`
@@ -46,6 +47,7 @@ const TabPanelWrapper = styled(TabPanel)`
   &.tab_panel_selected {
     z-index: 1;
   }
+  top: 0px;
 `;
 
 const TabText = styled.span`
