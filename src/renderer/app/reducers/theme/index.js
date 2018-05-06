@@ -1,4 +1,4 @@
-import { SET_THEME_PROP } from './actionTypes';
+import { SET_THEME_PROP, SET_DEFAULT_THEME } from './actionTypes';
 
 const initialState = {
   primaryColor: '#1e1e1e',
@@ -8,6 +8,8 @@ const initialState = {
 
 function theme(state = initialState, { type, payload }) {
   switch (type) {
+    case SET_DEFAULT_THEME:
+      return initialState;
     case SET_THEME_PROP:
       return Object.assign({}, state, payload);
     default:
