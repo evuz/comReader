@@ -9,7 +9,6 @@ const mapStateToProps = (state) => {
     directory,
     files,
     page,
-    fullScreen: state.windowState.fullScreen,
   };
 };
 

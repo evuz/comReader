@@ -8,8 +8,8 @@ export const Root = styled.div`
   overflow-y: auto;
   width: 125px;
   background: ${({ theme }) => theme.lateralNavColor};
-  ${({ fullScreen }) =>
-    fullScreen && `
+  ${({ theme }) =>
+    theme.fullScreen && `
     z-index: 2;
     top: 0;
     left: -100px;

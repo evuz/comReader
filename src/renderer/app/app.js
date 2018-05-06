@@ -38,8 +38,11 @@ class App extends Component {
   }
 
   render() {
+    const theme = Object.assign({}, this.props.theme, {
+      fullScreen: this.props.fullScreen,
+    });
     return (
-      <ThemeProvider theme={this.props.theme}>
+      <ThemeProvider theme={theme}>
         <div className="App">
           <LoadingContainer />
           <LayoutContainer>
@@ -54,6 +57,7 @@ class App extends Component {
 const mapStateToProps = state => ({
   tabSelected: state.tab.tabSelected,
   theme: state.theme,
+  fullScreen: state.windowState.fullScreen,
 });
 
 const mapDispatchToProps = {
