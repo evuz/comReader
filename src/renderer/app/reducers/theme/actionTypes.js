@@ -1,0 +1,2 @@
+export const SET_THEME_PROP = 'SET_THEME_PROP';
+export const SET_DEFAULT_THEME = 'SET_DEFAULT_THEME';

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 import MiniaturePage from './MiniaturePage';
-
-import './index.scss';
+import { Root } from './components';
 
 class LateralNav extends Component {
   scrollPosition() {
@@ -22,20 +21,21 @@ class LateralNav extends Component {
     const { files, directory, page } = this.props;
     this.scrollPosition();
 
-    const imgShow = files.map((file, index) => (<MiniaturePage
-      src={directory + file}
-      key={index}
-      page={index}
-      handleClick={this.props.onClickPage}
-      active={page === index}
-    />));
+    const imgShow = files.map((file, index) => (
+      <MiniaturePage
+        src={directory + file}
+        key={index}
+        page={index}
+        handleClick={this.props.onClickPage}
+        active={page === index}
+      />
+    ));
     return (
-      <div className="lateral_nav" ref={c => (this.lateralNav = c)}>
+      <Root fullScreen={this.props.fullScreen} innerRef={c => (this.lateralNav = c)}>
         {imgShow}
-      </div>
+      </Root>
     );
   }
 }
-
 
 export default LateralNav;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './index.scss';
+import { Root, DoblePage, Image, ImageLeft, ImageRight } from './components';
 
 class Reader extends Component {
   constructor() {
@@ -54,11 +54,7 @@ class Reader extends Component {
   }
 
   imgSize() {
-    const {
-      fullHeight,
-      fullWidth,
-      percentSize,
-    } = this.props.options;
+    const { fullHeight, fullWidth, percentSize } = this.props.options;
     if (fullHeight) {
       return {
         height: `${percentSize}%`,
@@ -76,55 +72,53 @@ class Reader extends Component {
     const { files, directory, page } = this.props.reader;
     const { twoColumns, percentSize } = this.props.options;
     const { clicked } = this.state;
-    const { height, width } = twoColumns ? { height: `${percentSize}%` } : this.imgSize();
+    const { height, width } = twoColumns
+      ? { height: `${percentSize}%` }
+      : this.imgSize();
 
     return files.length ? (
-      <div
-        className="reader"
-        ref={c => (this.reader = c)}
-      >
-        {
-          twoColumns ?
-            <div
-              className="doblePage"
-              style={{
-                height,
-              }}
-            >
-              <img
-                className={clicked ? 'left drag' : 'left'}
-                src={directory + files[page]}
-                alt=""
-                draggable="false"
-                onMouseDown={this.handleMouseDown}
-                onMouseUp={this.handleMouseUp}
-                onMouseMove={this.handleMouseMove}
-              />
-              <img
-                className={clicked ? 'right drag' : 'right'}
-                src={directory + files[page + 1]}
-                alt=""
-                draggable="false"
-                onMouseDown={this.handleMouseDown}
-                onMouseUp={this.handleMouseUp}
-                onMouseMove={this.handleMouseMove}
-              />
-            </div>
-            : <img
-              className={clicked ? 'drag' : ''}
+      <Root innerRef={c => (this.reader = c)}>
+        {twoColumns ? (
+          <DoblePage
+            style={{
+              height,
+            }}
+          >
+            <ImageLeft
+              drag={clicked}
               src={directory + files[page]}
               alt=""
-              style={{
-                height,
-                width,
-              }}
+              draggable="false"
               onMouseDown={this.handleMouseDown}
               onMouseUp={this.handleMouseUp}
               onMouseMove={this.handleMouseMove}
-              draggable="false"
             />
-        }
-      </div>
+            <ImageRight
+              drag={clicked}
+              src={directory + files[page + 1]}
+              alt=""
+              draggable="false"
+              onMouseDown={this.handleMouseDown}
+              onMouseUp={this.handleMouseUp}
+              onMouseMove={this.handleMouseMove}
+            />
+          </DoblePage>
+        ) : (
+          <Image
+            drag={clicked}
+            src={directory + files[page]}
+            alt=""
+            style={{
+              height,
+              width,
+            }}
+            onMouseDown={this.handleMouseDown}
+            onMouseUp={this.handleMouseUp}
+            onMouseMove={this.handleMouseMove}
+            draggable="false"
+          />
+        )}
+      </Root>
     ) : null;
   }
 }

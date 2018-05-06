@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
 import LayoutContainer from './containers/Layout';
 import TabPanelContainer from './containers/TabPanel';
@@ -8,7 +9,7 @@ import LoadingContainer from './containers/Loading';
 import { setDirectory, setFiles } from './reducers/reader';
 import { setFullScreen, setFetching } from './reducers/windowState';
 
-import './app.scss';
+import { Root } from './components';
 
 class App extends Component {
   componentDidMount() {
@@ -37,19 +38,26 @@ class App extends Component {
   }
 
   render() {
+    const theme = Object.assign({}, this.props.theme, {
+      fullScreen: this.props.fullScreen,
+    });
     return (
-      <div className="App">
-        <LoadingContainer />
-        <LayoutContainer>
-          <TabPanelContainer />
-        </LayoutContainer>
-      </div>
+      <ThemeProvider theme={theme}>
+        <Root>
+          <LoadingContainer />
+          <LayoutContainer>
+            <TabPanelContainer />
+          </LayoutContainer>
+        </Root>
+      </ThemeProvider>
     );
   }
 }
 
 const mapStateToProps = state => ({
   tabSelected: state.tab.tabSelected,
+  theme: state.theme,
+  fullScreen: state.windowState.fullScreen,
 });
 
 const mapDispatchToProps = {

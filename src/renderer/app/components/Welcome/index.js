@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './index.scss';
+import { Root, Text } from './components';
 
 const WelcomeComponent = () => (
-  <div className="welcome_component">
-    <p>Welcome to Visual Comic Reader</p>
-  </div>
+  <Root>
+    <Text>Welcome to Visual Comic Reader</Text>
+  </Root>
 );
 
 export default WelcomeComponent;

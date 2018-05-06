@@ -12,37 +12,59 @@ import {
   MdZoomOut,
 } from 'react-icons/lib/md';
 
-import './index.scss';
+import {
+  Root,
+  IconsWrapper,
+  Row,
+  Icon,
+  IconLeft,
+  IconRight,
+} from './components';
 
 const HeaderNav = props => (
-  <div className="header_nav" >
-    <div className="icons">
-      <div className="left">
-        <MdOpenInBrowser onClick={props.onClickOpenFile} />
-        <MdKeyboard onClick={props.onClickShortcutInfo} />
-      </div>
-      <div className="center">
-        <MdKeyboardArrowLeft onClick={props.onClickPreviousPage} />
-        <MdKeyboardArrowRight onClick={props.onClickNextPage} />
-      </div>
-      <div className="right">
-        <MdZoomOut onClick={props.onClickZoomOut} />
-        <MdZoomIn onClick={props.onClickZoomIn} />
-        <MdStayCurrentLandscape onClick={props.onClickFullWidth} />
-        <MdStayCurrentPortrait onClick={props.onClickFullHeight} />
-        {
-          props.twoColumns ?
-            <MdLooksOne
-              onClick={props.onClickChangeColumns}
-            /> :
-            <MdLooksTwo
-              onClick={props.onClickChangeColumns}
-            />
-        }
-      </div>
-    </div>
-  </div>
+  <Root>
+    <IconsWrapper>
+      <Row>
+        <IconLeft>
+          <MdOpenInBrowser onClick={props.onClickOpenFile} />
+        </IconLeft>
+        <IconLeft>
+          <MdKeyboard onClick={props.onClickShortcutInfo} />
+        </IconLeft>
+      </Row>
+      <Row>
+        <Icon>
+          <MdKeyboardArrowLeft onClick={props.onClickPreviousPage} />
+        </Icon>
+        <Icon>
+          <MdKeyboardArrowRight onClick={props.onClickNextPage} />
+        </Icon>
+      </Row>
+      <Row>
+        <IconRight>
+          <MdZoomOut onClick={props.onClickZoomOut} />
+        </IconRight>
+        <IconRight>
+          <MdZoomIn onClick={props.onClickZoomIn} />
+        </IconRight>
+        <IconRight>
+          <MdStayCurrentLandscape onClick={props.onClickFullWidth} />
+        </IconRight>
+        <IconRight>
+          <MdStayCurrentPortrait onClick={props.onClickFullHeight} />
+        </IconRight>
+        {props.twoColumns ? (
+          <IconRight>
+            <MdLooksOne onClick={props.onClickChangeColumns} />
+          </IconRight>
+        ) : (
+          <IconRight>
+            <MdLooksTwo onClick={props.onClickChangeColumns} />
+          </IconRight>
+        )}
+      </Row>
+    </IconsWrapper>
+  </Root>
 );
-
 
 export default HeaderNav;

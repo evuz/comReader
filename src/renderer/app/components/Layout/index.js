@@ -1,15 +1,13 @@
 import React from 'react';
 
-import './index.scss';
+import { Root, Container } from './components';
 
-const Layout = ({ children, lateralPanel, controlNav, fullScreen }) => (
-  <div className={fullScreen ? 'layout full_screen' : 'layout'}>
+const Layout = ({ children, lateralPanel, controlNav }) => (
+  <Root>
     {controlNav}
     {lateralPanel}
-    <div className="container">
-      {children}
-    </div>
-  </div>
+    <Container>{children}</Container>
+  </Root>
 );
 
 export default Layout;
