@@ -77,7 +77,11 @@ class Reader extends Component {
       : this.imgSize();
 
     return files.length ? (
-      <Root innerRef={c => (this.reader = c)}>
+      <Root
+        innerRef={(c) => {
+          this.reader = c;
+        }}
+      >
         {twoColumns ? (
           <DoblePage
             style={{
